@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Porsche Sales Dashboard</title>
-    <!-- Google Fonts & Chart.js CDN -->
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script src="https://jsdelivr.net"></script>
+    <!-- Google Fonts & Chart.js CDN Corrigido -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <script src="https://jsdelivr.net"></script>
     <style>
         :root {
             --bg-principal: #111111;
@@ -257,7 +257,7 @@
     </div>
 
     <script>
-        // Array de dados sanitizados embutido diretamente
+        // Array completo e fechado de dados
         const salesData = [
             {"modelo": "718 Cayman", "ano": 2022, "preco": 79500.00, "pagamento": "Credit Card", "cidade": "Boston", "estado": "MA"},
             {"modelo": "911 Turbo S", "ano": 2024, "preco": 235000.00, "pagamento": "Wire Transfer", "cidade": "Seattle", "estado": "WA"},
@@ -275,4 +275,7 @@
             {"modelo": "Cayenne Turbo GT", "ano": 2024, "preco": 188000.00, "pagamento": "Crypto Payment", "cidade": "Houston", "estado": "TX"},
             {"modelo": "911 Carrera Cabriolet", "ano": 2023, "preco": 127800.00, "pagamento": "Credit Card", "cidade": "Atlanta", "estado": "GA"},
             {"modelo": "Macan", "ano": 2021, "preco": 58900.00, "pagamento": "Bank Transfer", "cidade": "Orlando", "estado": "FL"},
-            {"modelo": "718 Spyder RS", "ano": 2024, "preco": 164000.00, "pagamento": "Financing", "cidade": "Portland", "estado": "OR"},
+            {"modelo": "718 Spyder RS", "ano": 2024, "preco": 164000.00, "pagamento": "Financing", "cidade": "Portland", "estado": "OR"}
+        ];
+
+        let chartModeloInstance = null;
