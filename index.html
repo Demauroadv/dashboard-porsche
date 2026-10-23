@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Porsche Sales Dashboard</title>
-    <!-- Google Fonts & Chart.js CDN Corrigidos e Completos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://jsdelivr.net"></script>
     <style>
         :root {
@@ -19,168 +18,27 @@
             --text-muted: #A3A3A3;
             --border-color: #2D2D2D;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-principal);
-            color: var(--text-main);
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--porsche-red);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        header h1 span {
-            color: var(--porsche-red);
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        /* Container de Filtros */
-        .filters-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            background-color: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .filter-group label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .filter-group select {
-            background-color: var(--bg-input);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            padding: 0.75rem;
-            border-radius: 6px;
-            outline: none;
-            cursor: pointer;
-            transition: border-color 0.2s;
-        }
-
-        .filter-group select:focus {
-            border-color: var(--porsche-red);
-        }
-
-        /* Grid de KPIs */
-        .kpi-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .kpi-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .kpi-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background-color: var(--porsche-red);
-        }
-
-        .kpi-title {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .kpi-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        /* Grid de Gráficos */
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .chart-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            min-height: 380px;
-        }
-
-        .chart-card.full-width {
-            grid-column: span 2;
-        }
-
-        .chart-card h3 {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .chart-container {
-            position: relative;
-            height: 300px;
-            width: 100%;
-        }
-
-        @media (max-width: 900px) {
-            .charts-grid {
-                grid-template-columns: 1fr;
-            }
-            .chart-card.full-width {
-                grid-column: span 1;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-principal); color: var(--text-main); padding: 2rem; min-height: 100vh; }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--porsche-red); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+        header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; }
+        header h1 span { color: var(--porsche-red); }
+        .subtitle { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem; }
+        .filters-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background-color: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 2rem; }
+        .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .filter-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+        .filter-group select { background-color: var(--bg-input); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem; border-radius: 6px; outline: none; cursor: pointer; }
+        .kpi-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .kpi-card { background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px; display: flex; flex-direction: column; gap: 0.5rem; position: relative; overflow: hidden; }
+        .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--porsche-red); }
+        .kpi-title { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+        .kpi-value { font-size: 1.8rem; font-weight: 700; }
+        .charts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .chart-card { background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: 8px; min-height: 380px; }
+        .chart-card.full-width { grid-column: span 2; }
+        .chart-card h3 { font-size: 1rem; margin-bottom: 1.5rem; color: var(--text-main); font-weight: 600; }
+        .chart-container { position: relative; height: 300px; width: 100%; }
+        @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } .chart-card.full-width { grid-column: span 1; } }
     </style>
 </head>
 <body>
@@ -196,86 +54,77 @@
         </div>
     </header>
 
-    <!-- Seção de Filtros -->
     <div class="filters-container">
-        <div class="filter-group">
-            <label for="filter-modelo">Modelo</label>
-            <select id="filter-modelo" onchange="updateDashboard()">
-                <option value="ALL">Todos os Modelos</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="filter-estado">Estado</label>
-            <select id="filter-estado" onchange="updateDashboard()">
-                <option value="ALL">Todos os Estados</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label for="filter-pagamento">Forma de Pagamento</label>
-            <select id="filter-pagamento" onchange="updateDashboard()">
-                <option value="ALL">Todas as Formas</option>
-            </select>
-        </div>
+        <div class="filter-group"><label>Modelo</label><select id="filter-modelo" onchange="updateDashboard()"><option value="ALL">Todos os Modelos</option></select></div>
+        <div class="filter-group"><label>Estado</label><select id="filter-estado" onchange="updateDashboard()"><option value="ALL">Todos os Estados</option></select></div>
+        <div class="filter-group"><label>Forma de Pagamento</label><select id="filter-pagamento" onchange="updateDashboard()"><option value="ALL">Todas as Formas</option></select></div>
     </div>
 
-    <!-- Seção de Indicadores (KPIs) -->
     <div class="kpi-container">
-        <div class="kpi-card">
-            <p class="kpi-title">Receita Total</p>
-            <p class="kpi-value" id="kpi-receita">$0.00</p>
-        </div>
-        <div class="kpi-card">
-            <p class="kpi-title">Unidades Vendidas</p>
-            <p class="kpi-value" id="kpi-vendas">0</p>
-        </div>
-        <div class="kpi-card">
-            <p class="kpi-title">Ticket Médio</p>
-            <p class="kpi-value" id="kpi-ticket">$0.00</p>
-        </div>
+        <div class="kpi-card"><p class="kpi-title">Receita Total</p><p class="kpi-value" id="kpi-receita">$0.00</p></div>
+        <div class="kpi-card"><p class="kpi-title">Unidades Vendidas</p><p class="kpi-value" id="kpi-vendas">0</p></div>
+        <div class="kpi-card"><p class="kpi-title">Ticket Médio</p><p class="kpi-value" id="kpi-ticket">$0.00</p></div>
     </div>
 
-    <!-- Painel de Gráficos -->
     <div class="charts-grid">
-        <div class="chart-card full-width">
-            <h3>Receita Acumulada por Modelo de Veículo</h3>
-            <div class="chart-container">
-                <canvas id="chartModelo"></canvas>
-            </div>
-        </div>
-        <div class="chart-card">
-            <h3>Preço Médio Praticado por Estado</h3>
-            <div class="chart-container">
-                <canvas id="chartEstado"></canvas>
-            </div>
-        </div>
-        <div class="chart-card">
-            <h3>Representatividade por Método de Pagamento</h3>
-            <div class="chart-container">
-                <canvas id="chartPagamento"></canvas>
-            </div>
-        </div>
+        <div class="chart-card full-width"><h3>Receita Acumulada por Modelo de Veículo</h3><div class="chart-container"><canvas id="chartModelo"></canvas></div></div>
+        <div class="chart-card"><h3>Preço Médio Praticado por Estado</h3><div class="chart-container"><canvas id="chartEstado"></canvas></div></div>
+        <div class="chart-card"><h3>Representatividade por Método de Pagamento</h3><div class="chart-container"><canvas id="chartPagamento"></canvas></div></div>
     </div>
 
     <script>
-        // Array completo e fechado de dados
         const salesData = [
-            {"modelo": "718 Cayman", "ano": 2022, "preco": 79500.00, "pagamento": "Credit Card", "cidade": "Boston", "estado": "MA"},
-            {"modelo": "911 Turbo S", "ano": 2024, "preco": 235000.00, "pagamento": "Wire Transfer", "cidade": "Seattle", "estado": "WA"},
-            {"modelo": "Cayenne Coupe", "ano": 2023, "preco": 112750.00, "pagamento": "Financing", "cidade": "Austin", "estado": "TX"},
-            {"modelo": "Macan S", "ano": 2021, "preco": 68900.00, "pagamento": "Cash", "cidade": "Denver", "estado": "CO"},
-            {"modelo": "Taycan 4S", "ano": 2024, "preco": 121000.00, "pagamento": "Bank Transfer", "cidade": "Los Angeles", "estado": "CA"},
-            {"modelo": "Panamera 4", "ano": 2023, "preco": 104500.00, "pagamento": "Credit Card", "cidade": "Miami", "estado": "FL"},
-            {"modelo": "911 Carrera S", "ano": 2020, "preco": 96300.00, "pagamento": "Lease", "cidade": "New York", "estado": "NY"},
-            {"modelo": "Cayenne E-Hybrid", "ano": 2022, "preco": 89750.00, "pagamento": "Wire Transfer", "cidade": "San Diego", "estado": "CA"},
-            {"modelo": "718 Boxster", "ano": 2021, "preco": 73500.00, "pagamento": "Debit Card", "cidade": "Chicago", "estado": "IL"},
-            {"modelo": "Macan GTS", "ano": 2024, "preco": 95000.00, "pagamento": "Financing", "cidade": "Phoenix", "estado": "AZ"},
-            {"modelo": "Taycan Turbo", "ano": 2023, "preco": 153200.50, "pagamento": "ACH Payment", "cidade": "Dallas", "estado": "TX"},
-            {"modelo": "911 GT3", "ano": 2024, "preco": 241000.00, "pagamento": "Wire Transfer", "cidade": "Las Vegas", "estado": "NV"},
-            {"modelo": "Panamera Turbo S", "ano": 2022, "preco": 132000.00, "pagamento": "Cash", "cidade": "San Jose", "estado": "CA"},
-            {"modelo": "Cayenne Turbo GT", "ano": 2024, "preco": 188000.00, "pagamento": "Crypto Payment", "cidade": "Houston", "estado": "TX"},
-            {"modelo": "911 Carrera Cabriolet", "ano": 2023, "preco": 127800.00, "pagamento": "Credit Card", "cidade": "Atlanta", "estado": "GA"},
-            {"modelo": "Macan", "ano": 2021, "preco": 58900.00, "pagamento": "Bank Transfer", "cidade": "Orlando", "estado": "FL"},
-            {"modelo": "718 Spyder RS", "ano": 2024, "preco": 164000.00, "pagamento": "Financing", "cidade": "Portland", "estado": "OR"}
+            {"modelo": "718 Cayman", "preco": 79500, "pagamento": "Credit Card", "estado": "MA"},
+            {"modelo": "911 Turbo S", "preco": 235000, "pagamento": "Wire Transfer", "estado": "WA"},
+            {"modelo": "Cayenne Coupe", "preco": 112750, "pagamento": "Financing", "estado": "TX"},
+            {"modelo": "Macan S", "preco": 68900, "pagamento": "Cash", "estado": "CO"},
+            {"modelo": "Taycan 4S", "preco": 121000, "pagamento": "Bank Transfer", "estado": "CA"},
+            {"modelo": "Panamera 4", "preco": 104500, "pagamento": "Credit Card", "estado": "FL"},
+            {"modelo": "911 Carrera S", "preco": 96300, "pagamento": "Lease", "estado": "NY"}
         ];
 
-        let chartModeloInstance = null;
+        let cM = null, cE = null, cP = null;
+
+        function populateFilters() {
+            const mods = [...new Set(salesData.map(d => d.modelo))].sort();
+            const ests = [...new Set(salesData.map(d => d.estado))].sort();
+            const pgs = [...new Set(salesData.map(d => d.pagamento))].sort();
+            mods.forEach(m => document.getElementById('filter-modelo').add(new Option(m, m)));
+            ests.forEach(e => document.getElementById('filter-estado').add(new Option(e, e)));
+            pgs.forEach(p => document.getElementById('filter-pagamento').add(new Option(p, p)));
+        }
+
+        function updateDashboard() {
+            const fM = document.getElementById('filter-modelo').value;
+            const fE = document.getElementById('filter-estado').value;
+            const fP = document.getElementById('filter-pagamento').value;
+
+            const filtered = salesData.filter(d => (fM === 'ALL' || d.modelo === fM) && (fE === 'ALL' || d.estado === fE) && (fP === 'ALL' || d.pagamento === fP));
+            const rec = filtered.reduce((a, b) => a + b.preco, 0);
+            const qtd = filtered.length;
+            const tk = qtd > 0 ? rec / qtd : 0;
+
+            document.getElementById('kpi-receita').innerText = '$' + rec.toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('kpi-vendas').innerText = qtd;
+            document.getElementById('kpi-ticket').innerText = '$' + tk.toLocaleString('en-US', {minimumFractionDigits: 2});
+
+            // Gráfico 1
+            const rMod = {}; filtered.forEach(d => rMod[d.modelo] = (rMod[d.modelo] || 0) + d.preco);
+            if(cM) cM.destroy();
+            cM = new Chart(document.getElementById('chartModelo').getContext('2d'), { type: 'bar', data: { labels: Object.keys(rMod), datasets: [{ label: 'Receita ($)', data: Object.values(rMod), backgroundColor: '#D5001C' }] }, options: { responsive: true, maintainAspectRatio: false } });
+
+            // Gráfico 2
+            const pEst = {}; filtered.forEach(d => pEst[d.estado] = (pEst[d.estado] || 0) + d.preco);
+            if(cE) cE.destroy();
+            cE = new Chart(document.getElementById('chartEstado').getContext('2d'), { type: 'bar', data: { labels: Object.keys(pEst), datasets: [{ label: 'Total ($)', data: Object.values(pEst), backgroundColor: '#A3A3A3' }] }, options: { responsive: true, maintainAspectRatio: false } });
+
+            // Gráfico 3
+            const pPg = {}; filtered.forEach(d => pPg[d.pagamento] = (pPg[d.pagamento] || 0) + 1);
+            if(cP) cP.destroy();
+            cP = new Chart(document.getElementById('chartPagamento').getContext('2d'), { type: 'pie', data: { labels: Object.keys(pPg), datasets: [{ data: Object.values(pPg), backgroundColor: ['#D5001C', '#A3A3A3', '#262626', '#404040'] }] }, options: { responsive: true, maintainAspectRatio: false } });
+        }
+
+        window.onload = function() { populateFilters(); updateDashboard(); };
+    </script>
+</body>
+</html>
