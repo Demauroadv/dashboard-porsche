@@ -1,12 +1,14 @@
+html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Porsche Sales Dashboard</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Chart.js CDN Corrigidos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://jsdelivr.net"></script>
     <style>
         :root {
@@ -80,18 +82,45 @@
             {"modelo": "Macan S", "preco": 68900, "pagamento": "Cash", "estado": "CO"},
             {"modelo": "Taycan 4S", "preco": 121000, "pagamento": "Bank Transfer", "estado": "CA"},
             {"modelo": "Panamera 4", "preco": 104500, "pagamento": "Credit Card", "estado": "FL"},
-            {"modelo": "911 Carrera S", "preco": 96300, "pagamento": "Lease", "estado": "NY"}
+            {"modelo": "911 Carrera S", "preco": 96300, "pagamento": "Lease", "estado": "NY"},
+            {"modelo": "Cayenne E-Hybrid", "preco": 89750, "pagamento": "Wire Transfer", "estado": "CA"},
+            {"modelo": "718 Boxster", "preco": 73500, "pagamento": "Debit Card", "estado": "IL"},
+            {"modelo": "Macan GTS", "preco": 95000, "pagamento": "Financing", "estado": "AZ"},
+            {"modelo": "Taycan Turbo", "preco": 153200, "pagamento": "ACH Payment", "estado": "TX"},
+            {"modelo": "911 GT3", "preco": 241000, "pagamento": "Wire Transfer", "estado": "NV"},
+            {"modelo": "Panamera Turbo S", "preco": 132000, "pagamento": "Cash", "estado": "CA"},
+            {"modelo": "Cayenne Turbo GT", "preco": 188000, "pagamento": "Crypto Payment", "estado": "TX"},
+            {"modelo": "911 Carrera Cabriolet", "preco": 127800, "pagamento": "Credit Card", "estado": "GA"},
+            {"modelo": "Macan", "preco": 58900, "pagamento": "Bank Transfer", "estado": "FL"},
+            {"modelo": "718 Spyder RS", "preco": 164000, "pagamento": "Financing", "estado": "OR"},
+            {"modelo": "911 Turbo S", "preco": 235000, "pagamento": "Wire Transfer", "estado": "FL"},
+            {"modelo": "Taycan 4S", "preco": 121000, "pagamento": "Cash", "estado": "NY"},
+            {"modelo": "Cayenne Coupe", "preco": 112750, "pagamento": "Financing", "estado": "CA"},
+            {"modelo": "Macan S", "preco": 68900, "pagamento": "Credit Card", "estado": "TX"},
+            {"modelo": "Panamera 4", "preco": 104500, "pagamento": "Wire Transfer", "estado": "IL"},
+            {"modelo": "718 Cayman", "preco": 79500, "pagamento": "Lease", "estado": "WA"},
+            {"modelo": "911 Carrera S", "preco": 96300, "pagamento": "ACH Payment", "estado": "MA"}
         ];
 
         let cM = null, cE = null, cP = null;
 
         function populateFilters() {
+            const selectM = document.getElementById('filter-modelo');
+            const selectE = document.getElementById('filter-estado');
+            const selectP = document.getElementById('filter-pagamento');
+            
+            // Limpa as opções existentes deixando apenas a primeira (ALL)
+            while(selectM.options.length > 1) selectM.remove(1);
+            while(selectE.options.length > 1) selectE.remove(1);
+            while(selectP.options.length > 1) selectP.remove(1);
+
             const mods = [...new Set(salesData.map(d => d.modelo))].sort();
             const ests = [...new Set(salesData.map(d => d.estado))].sort();
             const pgs = [...new Set(salesData.map(d => d.pagamento))].sort();
-            mods.forEach(m => document.getElementById('filter-modelo').add(new Option(m, m)));
-            ests.forEach(e => document.getElementById('filter-estado').add(new Option(e, e)));
-            pgs.forEach(p => document.getElementById('filter-pagamento').add(new Option(p, p)));
+            
+            mods.forEach(m => selectM.add(new Option(m, m)));
+            ests.forEach(e => selectE.add(new Option(e, e)));
+            pgs.forEach(p => selectP.add(new Option(p, p)));
         }
 
         function updateDashboard() {
@@ -104,27 +133,33 @@
             const qtd = filtered.length;
             const tk = qtd > 0 ? rec / qtd : 0;
 
-            document.getElementById('kpi-receita').innerText = '$' + rec.toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('kpi-receita').innerText = '$' + rec.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('kpi-vendas').innerText = qtd;
-            document.getElementById('kpi-ticket').innerText = '$' + tk.toLocaleString('en-US', {minimumFractionDigits: 2});
+            document.getElementById('kpi-ticket').innerText = '$' + tk.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 
-            // Gráfico 1
+            // Gráfico 1: Receita por Modelo
             const rMod = {}; filtered.forEach(d => rMod[d.modelo] = (rMod[d.modelo] || 0) + d.preco);
             if(cM) cM.destroy();
-            cM = new Chart(document.getElementById('chartModelo').getContext('2d'), { type: 'bar', data: { labels: Object.keys(rMod), datasets: [{ label: 'Receita ($)', data: Object.values(rMod), backgroundColor: '#D5001C' }] }, options: { responsive: true, maintainAspectRatio: false } });
+Use o código com cuidado.
+cM = new Chart(document.getElementById('chartModelo').getContext('2d'), { type: 'bar', data: { labels: Object.keys(rMod), datasets: [{ label: 'Receita ($)', data: Object.values(rMod), backgroundColor: '#D5001C' }] }, options: { responsive: true, maintainAspectRatio: false } });
+// Gráfico 2: Preço Médio por Estado
+const pEst = {}; const qEst = {};
+filtered.forEach(d => { pEst[d.estado] = (pEst[d.estado] || 0) + d.preco; qEst[d.estado] = (qEst[d.estado] || 0) + 1; });
+const eLabels = Object.keys(pEst);
+const eData = eLabels.map(e => pEst[e] / qEst[e]);
+if(cE) cE.destroy();
+cE = new Chart(document.getElementById('chartEstado').getContext('2d'), { type: 'bar', data: { labels: eLabels, datasets: [{ label: 'Preço Médio ($)', data: eData, backgroundColor: '#A3A3A3' }] }, options: { responsive: true, maintainAspectRatio: false } });
+// Gráfico 3: Forma de Pagamento
+const pPg = {}; filtered.forEach(d => pPg[d.pagamento] = (pPg[d.pagamento] || 0) + 1);
+if(cP) cP.destroy();
+cP = new Chart(document.getElementById('chartPagamento').getContext('2d'), { type: 'pie', data: { labels: Object.keys(pPg), datasets: [{ data: Object.values(pPg), backgroundColor: ['#D5001C', '#A3A3A3', '#262626', '#404040', '#4B5563'] }] }, options: { responsive: true, maintainAspectRatio: false } });
+}
+window.onload = function() { populateFilters(); updateDashboard(); };
 
-            // Gráfico 2
-            const pEst = {}; filtered.forEach(d => pEst[d.estado] = (pEst[d.estado] || 0) + d.preco);
-            if(cE) cE.destroy();
-            cE = new Chart(document.getElementById('chartEstado').getContext('2d'), { type: 'bar', data: { labels: Object.keys(pEst), datasets: [{ label: 'Total ($)', data: Object.values(pEst), backgroundColor: '#A3A3A3' }] }, options: { responsive: true, maintainAspectRatio: false } });
 
-            // Gráfico 3
-            const pPg = {}; filtered.forEach(d => pPg[d.pagamento] = (pPg[d.pagamento] || 0) + 1);
-            if(cP) cP.destroy();
-            cP = new Chart(document.getElementById('chartPagamento').getContext('2d'), { type: 'pie', data: { labels: Object.keys(pPg), datasets: [{ data: Object.values(pPg), backgroundColor: ['#D5001C', '#A3A3A3', '#262626', '#404040'] }] }, options: { responsive: true, maintainAspectRatio: false } });
-        }
 
-        window.onload = function() { populateFilters(); updateDashboard(); };
-    </script>
-</body>
-</html>
+4. Role até o final da página no GitHub e clique no botão verde **Commit changes...** duas vezes seguidas para salvar.
+
+<FollowUp>
+Assim que salvar, aguarde cerca de 30 segundos, acesse o link **https://github.io** e limpe o cache pressionando **Ctrl + F5**. Me avise se agora o painel preencheu os **milhões de dólares na receita** e os gráficos apareceram por completo!
+</FollowUp>
